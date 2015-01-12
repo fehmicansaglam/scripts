@@ -1,0 +1,56 @@
+#!/usr/bin/python
+
+import sys, os, errno
+
+project_name = raw_input("Project Name: ")
+if not project_name:
+    sys.exit("You have to provide a Project Name")
+if os.path.isdir(project_name):
+    sys.exit("Project " + project_name + " already exists")
+
+organization = raw_input("Organization: ")
+if not organization:
+    sys.exit("You have to provide an Organization")
+
+version = raw_input("Version[0.1-SNAPSHOT]: ") or "0.1-SNAPSHOT"
+
+scala_version = raw_input("Scala Version[2.11.4]: ") or "2.11.4"
+
+sbt_version = raw_input("SBT Version[0.13.7]: ") or "0.13.7"
+
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except OSError as exc: # Python >2.5
+        if exc.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else: raise
+
+mkdir_p(project_name + "/project")
+
+mkdir_p(project_name + "/src/main/java")
+mkdir_p(project_name + "/src/main/scala")
+mkdir_p(project_name + "/src/main/resources")
+
+mkdir_p(project_name + "/src/test/java")
+mkdir_p(project_name + "/src/test/scala")
+mkdir_p(project_name + "/src/test/resources")
+
+fd = open(project_name + "/build.sbt", "w")
+fd.write('name := "' + project_name + '"')
+fd.write("\n\n")
+fd.write('organization := "' + organization + '"')
+fd.write("\n\n")
+fd.write('version := "' + version + '"')
+fd.write("\n\n")
+fd.write('scalaVersion := "' + scala_version + '"')
+fd.write("\n\n")
+fd.close()
+
+fd = open(project_name + "/project/build.properties", "w")
+fd.write("sbt.version=" + sbt_version)
+fd.write("\n\n")
+fd.close()
+
+print project_name + " is ready\n"
+
