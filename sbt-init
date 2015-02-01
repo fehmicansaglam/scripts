@@ -2,7 +2,11 @@
 
 import sys, os, errno
 
-project_name = raw_input("Project Name: ")
+if len(sys.argv) == 2:
+    project_name = sys.argv[1]
+else:
+    project_name = raw_input("Project Name: ")
+
 if not project_name:
     sys.exit("You have to provide a Project Name")
 if os.path.isdir(project_name):
@@ -14,7 +18,7 @@ if not organization:
 
 version = raw_input("Version[0.1-SNAPSHOT]: ") or "0.1-SNAPSHOT"
 
-scala_version = raw_input("Scala Version[2.11.4]: ") or "2.11.4"
+scala_version = raw_input("Scala Version[2.11.5]: ") or "2.11.5"
 
 sbt_version = raw_input("SBT Version[0.13.7]: ") or "0.13.7"
 
