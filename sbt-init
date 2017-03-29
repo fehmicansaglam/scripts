@@ -2,6 +2,10 @@
 
 import sys, os, errno
 
+CONST_VERSION = "1.0.0"
+CONST_SCALA_VERSION = "2.12.1"
+CONST_SBT_VERSION = "0.13.13"
+
 if len(sys.argv) == 2:
     project_name = sys.argv[1]
 else:
@@ -16,11 +20,11 @@ organization = raw_input("Organization: ")
 if not organization:
     sys.exit("You have to provide an Organization")
 
-version = raw_input("Version[0.1-SNAPSHOT]: ") or "0.1-SNAPSHOT"
+version = raw_input("Version[{}]: ".format(CONST_VERSION)) or CONST_VERSION
 
-scala_version = raw_input("Scala Version[2.11.6]: ") or "2.11.6"
+scala_version = raw_input("Scala Version[{}]: ".format(CONST_SCALA_VERSION)) or CONST_SCALA_VERSION
 
-sbt_version = raw_input("SBT Version[0.13.8]: ") or "0.13.8"
+sbt_version = raw_input("SBT Version[{}]: ".format(CONST_SBT_VERSION)) or CONST_SBT_VERSION
 
 def mkdir_p(path):
     try:
