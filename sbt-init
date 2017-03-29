@@ -60,5 +60,12 @@ fd.write("sbt.version=" + sbt_version)
 fd.write("\n\n")
 fd.close()
 
+# Create application.conf
+with open(project_name + "/src/main/resources/application.conf", "w") as f:
+    f.write("")
+
+with open(project_name + "/src/test/resources/application.conf", "w") as f:
+    f.write("")
+
 print project_name + " is ready\n"
 
