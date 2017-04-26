@@ -51,7 +51,7 @@ fd.write('organization := "' + organization + '"')
 fd.write("\n\n")
 fd.write('version := "' + version + '"')
 fd.write("\n\n")
-fd.write('scalaVersion := "' + scala_version + '"')
+fd.write('scalaVersion in ThisBuild := "' + scala_version + '"')
 fd.write("\n\n")
 fd.close()
 
